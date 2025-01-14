@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Cargar el CSS de DataTables con Tailwind -->
+    <link href="https://cdn.datatables.net/2.2.1/css/dataTables.tailwindcss.css" rel="stylesheet">
+
+    <!-- Cargar jQuery (DataTables depende de jQuery) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+    <!-- Cargar Tailwind CSS (opcional, dependiendo de tu configuración) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Cargar los archivos JS de DataTables -->
+    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.tailwindcss.js"></script>
+
+    <title>Manage Orders</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="p-8 w-full h-1/2 flex flex-col justify-center items-center">
+        <h1>Create a New Order</h1>
+
+        <!-- Display success or error message -->
+        {% if message %}
+            <div class="message">{{ message }}</div>
+        {% endif %}
+
+        <form method="POST" action="/order/" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="client_id">
+                Client ID
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="client_id" type="text" placeholder="Client ID" name="client_id" required>
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="products">
+                Products
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="products" type="text" placeholder="e.g., Product1, Product2" name="products" required>
+            </div>
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Submit Order
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="p-8">
+        <h2>Registered Orders</h2>
+        <table id="order_table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Client ID</th>
+                    <th>Products</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.client_id }}</td>
+                    <td>{{ order.products }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+<script> new DataTable('#order_table')</script>
+</html>
