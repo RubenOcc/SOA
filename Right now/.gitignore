@@ -19,3 +19,24 @@ env/
 
 # Archivos de configuración de editores
 .vscode/
+# Archivos de configuración de entornos
+.env
+
+# Archivos compilados de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos y directorios de entornos virtuales
+venv/
+env/
+
+# Archivos temporales y de caché
+*.log
+*.bak
+*.swp
+*.swo
+
+# Archivos de configuración de editores
+.vscode/
