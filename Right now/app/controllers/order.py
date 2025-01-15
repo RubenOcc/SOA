@@ -5,10 +5,10 @@ from app.schemas.order_dto import OrderDTO
 import os
 from dotenv import load_dotenv
 
-# Cargar las variables de entorno desde el archivo .env
+# Load environment variables from the .env file
 load_dotenv()
 
-order_bp = Blueprint("order", __name__, url_prefix="/order")
+order_bp = Blueprint("order", __name__, url_prefix="/")
 
 order_service = OrderService()
 notification_service = NotificationService()
