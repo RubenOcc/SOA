@@ -1,0 +1,23 @@
+version: '2'
+services:
+
+  solr:
+    image: solr:4
+    build:
+      context: ./docker/solr/
+
+  dynamodb:
+    image: docker.orbis.pe/apt_emp_backend:dynamodb
+    build:
+      context: ./docker/dynamodb/
+
+  solr8:
+    image: solr:8
+    build:
+      context: ./docker/solr8
+
+
+  solr6:
+    image: solr:6
+    build:
+      context: ./docker/solr6

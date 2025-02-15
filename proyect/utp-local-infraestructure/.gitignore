@@ -1,0 +1,14 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+*thumbs.db
+.*.swp
+.*~
+.DS_Store
+.project
+.settings
+.buildpath
+.idea/*
+.idea/workspace.xml
+docker/solr/solr/*/data/
+
+data8/*
+data8/*

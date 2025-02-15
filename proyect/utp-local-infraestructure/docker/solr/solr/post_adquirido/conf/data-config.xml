@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataConfig>
+  <dataSource type="JdbcDataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://mysql:3306/mdb_apt_aptitus?zeroDateTimeBehavior=convertToNull"
+  batchSize="-1" user="root" password="1234" convertType="true" />
+  <document>
+       <entity name="post_adquirido" transformer="DateFormatTransformer"
+         query="SELECT id_empresa, id_postulante FROM empresa_cv">
+          <!-- =========================================== post_adquirido ============================================== -->
+          <field name="id_empresa" column="id_empresa"/>
+          <field name="id_postulante" column="id_postulante"/>
+      </entity>
+  </document>
+</dataConfig>

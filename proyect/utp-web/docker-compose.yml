@@ -1,0 +1,30 @@
+services:
+  backend:
+    image: $IMAGE_DEV
+    container_name: $CONTAINER_NAME
+    entrypoint: "npm start"
+    environment:
+      VIRTUAL_HOST: 'local.siri.com'
+      APPLICATION_ENV: 'local'
+      APP_ENV: 'local'
+      VIRTUAL_HOST_WEIGHT: 1
+      HOME: /app
+      AWS_SDK_LOAD_NONDEFAULT_CONFIG: 1
+      AWS_CONFIG_FILE: /app/.aws/config
+      AWS_PROFILE: dev
+      AWS_SDK_LOAD_CONFIG: 1
+    volumes:
+        - ./app-v2/src:/app
+        - ~/.ssh:/root/.ssh
+        - ~/.aws/:/app/.aws/:rw
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=Host(`local.siri.com`) && PathPrefix(`/`)"
+      - "traefik.http.routers.backend.priority=1"
+      - "traefik.http.services.backend.loadbalancer.server.port=80"
+    networks:
+      - siri_network
+networks:
+  siri_network:
+    external: true
+
